@@ -6,6 +6,8 @@ public class ShipController : MonoBehaviour
 {
     // Start is called before the first frame update
     public float enemySpawnChance = .01f;
+
+
     void Start()
     {
 
@@ -15,5 +17,10 @@ public class ShipController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private IEnumerator spawnEnemies()
+    {
+        yield return null;
     }
 }

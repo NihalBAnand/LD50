@@ -9,6 +9,7 @@ TagManager:
   - Interactable
   - Tear
   - Ship
+  - Monster
   layers:
   - Default
   - TransparentFX
