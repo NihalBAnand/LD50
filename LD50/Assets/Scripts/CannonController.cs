@@ -7,11 +7,15 @@ public class CannonController : MonoBehaviour
     public bool cannonStatus;
     public float gunpowderStack;
     public float depletionRate;
+    public int enemySpawnFactor;
+    public GameObject ship;
+
     void Start()
     {
         cannonStatus = true;
         gunpowderStack = 100;
         depletionRate = .1f;
+        enemySpawnFactor = 2;
         StartCoroutine(depleteCoroutine());
 
     }
@@ -23,11 +27,8 @@ public class CannonController : MonoBehaviour
         {
             cannonStatus = false;
             gunpowderStack = 0;
-            Debug.Log("NO GUNPOWDER!!!");
-        }
-        else
-        {
-            cannonStatus = true;
+            ship.GetComponent<ShipController>().enemySpawnChance *=enemySpawnFactor;
+            
         }
         
     }

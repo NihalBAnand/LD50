@@ -5,10 +5,10 @@ using UnityEngine;
 public class ShipController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float enemySpawnChance = 0;
+    public float enemySpawnChance = .01f;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
