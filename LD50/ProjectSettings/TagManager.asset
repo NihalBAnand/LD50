@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Object
+  - Trigger
+  - Interactable
+  - Tear
   layers:
   - Default
   - TransparentFX
@@ -40,4 +44,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Objects-Behind
+    uniqueID: 1251030963
+    locked: 0
+  - name: Player
+    uniqueID: 1964172025
+    locked: 0
+  - name: Objects-Front
+    uniqueID: 435210861
+    locked: 0
+  - name: Minigame-bg
+    uniqueID: 2450535565
+    locked: 0
+  - name: Minigame-obj
+    uniqueID: 3723828459
     locked: 0
