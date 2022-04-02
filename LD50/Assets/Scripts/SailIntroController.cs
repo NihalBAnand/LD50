@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestInteractableController : InteractableGeneric
+public class SailIntroController : InteractableGeneric
 {
     private bool activated;
     // Start is called before the first frame update
