@@ -6,12 +6,14 @@ public class SailController : MonoBehaviour
 {
     public GameObject tear;
     public int tears;
+
+    private Renderer renderer;
     // Start is called before the first frame update
     void Start()
     {
         tears = 0;
         StartCoroutine(updateHoles(2));
-
+        renderer = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class SailController : MonoBehaviour
             {
                 GameObject newTear = Instantiate(tear);
                 newTear.transform.parent = gameObject.transform;
-                newTear.transform.position = new Vector3(Random.Range((float)(transform.position.x - (0.5 * transform.position.x) + 3), (float)(transform.position.x + (0.5 * transform.position.x) - 3)), Random.Range((float)(transform.position.y - (0.5 * transform.position.y) + 1), (float)(transform.position.y + (0.5 * transform.position.y) - 1)));
+                newTear.transform.position = new Vector3(Random.Range((float)(transform.position.x - (0.5 * renderer.bounds.size.x) + 1), (float)(transform.position.x + (0.5 * renderer.bounds.size.x) - 1)), Random.Range((float)(transform.position.y - (0.5 * renderer.bounds.size.y) + 1), (float)(transform.position.y + (0.5 * renderer.bounds.size.y) - 1)));
                 Debug.Log(newTear.transform.position);
                 tears += 1;
             }
