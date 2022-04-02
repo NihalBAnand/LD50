@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class CannonController : MonoBehaviour
+public class CannonController : InteractableGeneric
 {
     // Start is called before the first frame update
     public bool cannonStatus;
@@ -9,6 +9,11 @@ public class CannonController : MonoBehaviour
     public float depletionRate;
     public int enemySpawnFactor;
     public GameObject ship;
+
+    public override void Interaction(GameObject player)
+    {
+
+    }
 
     void Start()
     {
