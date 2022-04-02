@@ -35,7 +35,7 @@ public class HullController : MonoBehaviour
                 yield return new WaitForSeconds(3);
 
             //1 in 10 chance of spawning a hole
-            if (Random.Range(0, 0) == 0)
+            if (Random.Range(0, 10) == 0)
             {
                 GameObject newHole = Instantiate(hole);
                 newHole.transform.parent = gameObject.transform;
