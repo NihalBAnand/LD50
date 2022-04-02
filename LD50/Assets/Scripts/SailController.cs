@@ -24,6 +24,7 @@ public class SailController : MonoBehaviour
     {
         while (true)
         {
+            //Based on difficulty, change the time in between hole spawn chances
             if (difficulty == 0)
                 yield return new WaitForSeconds(10);
             else if (difficulty == 1)
@@ -31,7 +32,8 @@ public class SailController : MonoBehaviour
             else if (difficulty == 2)
                 yield return new WaitForSeconds(3);
 
-            if (Random.Range(0, 0) == 0)
+            //1 in 10 chance of spawning a tear
+            if (Random.Range(0, 10) == 0)
             {
                 GameObject newTear = Instantiate(tear);
                 newTear.transform.parent = gameObject.transform;

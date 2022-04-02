@@ -17,7 +17,7 @@ public class TestInteractableController : InteractableGeneric
         
     }
 
-
+    //Takes player back and forth from the sail minigame when interacted with
     override public void Interaction(GameObject player)
     {
         if (!activated)

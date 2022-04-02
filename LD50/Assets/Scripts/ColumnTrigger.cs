@@ -18,12 +18,14 @@ public class ColumnTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Move in front of player if the trigger is tripped
         transform.parent.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Objects-Front";
         Debug.Log(transform.parent.gameObject.GetComponent<SpriteRenderer>().rendererPriority);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        //Move behind the player if the trigger is un-tripped
         transform.parent.gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Objects-Behind";
     }
 }
