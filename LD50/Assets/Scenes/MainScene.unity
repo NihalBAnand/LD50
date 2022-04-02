@@ -264,6 +264,7 @@ MonoBehaviour:
   step2: {fileID: 8300000, guid: 212a12939ab45ea499ea525d67a45e7a, type: 3}
   step3: {fileID: 8300000, guid: 78aeebb4071ea6742bfffb2a9efa03f9, type: 3}
   swordAudio: {fileID: 0}
+  vulnerable: 0
 --- !u!61 &308738296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1254,6 +1255,7 @@ Transform:
   - {fileID: 1465672628}
   m_Father: {fileID: 0}
   m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1233736034
 MonoBehaviour:
@@ -1361,7 +1363,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1398229226
 GameObject:
@@ -2182,7 +2184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2094616795602240079, guid: d72f69e8ef1c15041af10120f0ad0b39, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2094616795602240079, guid: d72f69e8ef1c15041af10120f0ad0b39, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2382,7 +2384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6732218515350700159, guid: 8283587e258cff242b5fbd72a5cc4c6b, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6732218515350700159, guid: 8283587e258cff242b5fbd72a5cc4c6b, type: 3}
       propertyPath: m_LocalPosition.x

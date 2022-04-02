@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private AudioClip[] steps = new AudioClip[3];
 
     public AudioSource swordAudio;
+
+    public bool vulnerable;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +38,8 @@ public class PlayerController : MonoBehaviour
         steps[2] = step3;
 
         swordAudio = GameObject.Find("PlayerAudioSword").GetComponent<AudioSource>();
+
+        vulnerable = true;
     }
 
     // Update is called once per frame
@@ -100,5 +104,23 @@ public class PlayerController : MonoBehaviour
             spacebarIndicator.SetActive(false);
             canInteract = false;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Monster" && vulnerable)
+        {
+            rb.AddForce((transform.position - collision.collider.transform.position) * 2500);
+            StartCoroutine(iFrames());
+        }
+    }
+
+    private IEnumerator iFrames()
+    {
+        vulnerable = false;
+        GetComponent<SpriteRenderer>().color = new Color(166, 166, 166, .7f);
+        yield return new WaitForSeconds(1.7f);
+        vulnerable = true;
+        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1f);
     }
 }
