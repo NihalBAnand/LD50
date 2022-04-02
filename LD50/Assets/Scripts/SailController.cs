@@ -12,7 +12,7 @@ public class SailController : MonoBehaviour
     void Start()
     {
         tears = 0;
-        StartCoroutine(updateHoles(2));
+        StartCoroutine(updateTears(2));
         renderer = GetComponent<Renderer>();
     }
 
@@ -22,7 +22,7 @@ public class SailController : MonoBehaviour
         
     }
 
-    private IEnumerator updateHoles(int difficulty)
+    private IEnumerator updateTears(int difficulty)
     {
         while (true)
         {
