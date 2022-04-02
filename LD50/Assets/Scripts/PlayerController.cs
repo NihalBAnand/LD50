@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource swordAudio;
 
     public bool vulnerable;
+    public int health;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,11 +41,18 @@ public class PlayerController : MonoBehaviour
         swordAudio = GameObject.Find("PlayerAudioSword").GetComponent<AudioSource>();
 
         vulnerable = true;
+        health = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0)
+        {
+            Camera.main.transform.parent = GameObject.Find("Center").transform;
+            Destroy(gameObject);
+        }
+
         if (!interacting) 
         {
             //Basic movement -- this works, pls no touch
@@ -111,6 +119,8 @@ public class PlayerController : MonoBehaviour
         if (collision.collider.tag == "Monster" && vulnerable)
         {
             rb.AddForce((transform.position - collision.collider.transform.position) * 2500);
+            health -= collision.collider.GetComponent<EnemyController>().damage;
+            Debug.Log(health);
             StartCoroutine(iFrames());
         }
     }
