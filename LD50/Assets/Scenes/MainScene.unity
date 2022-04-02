@@ -165,6 +165,7 @@ MonoBehaviour:
   step3: {fileID: 8300000, guid: 78aeebb4071ea6742bfffb2a9efa03f9, type: 3}
   swordAudio: {fileID: 0}
   vulnerable: 0
+  health: 0
 --- !u!61 &308738296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -356,6 +357,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnChance: 0.01
+  enemy: {fileID: 5592608718378014545, guid: fd88981ae8edee1498bab3d5c59edf25, type: 3}
+  rightSideSpawn: {fileID: 0}
+  leftSideSpawn: {fileID: 0}
 --- !u!483693784 &465388397
 TilemapRenderer:
   m_ObjectHideFlags: 0
