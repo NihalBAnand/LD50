@@ -7,9 +7,13 @@ public class GunpowderFill : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject cannon;
+
+    private bool running;
     void Start()
     {
         cannon = GameObject.Find("Cannon");
+
+        running = false;
     }
 
     // Update is called once per frame
@@ -18,15 +22,17 @@ public class GunpowderFill : MonoBehaviour
 
     }
 
-    private void OnMouseDown()
+    private void OnMouseDrag()
     {
-        StartCoroutine(fillGunpowder());
+        if (!running)
+            StartCoroutine(fillGunpowder());
     }
     IEnumerator fillGunpowder()
     {
+        running = true;
         Debug.Log(cannon.GetComponent<CannonController>().gunpowderStack);
         cannon.GetComponent<CannonController>().addGunpowder();
         yield return new WaitForSeconds(1.0f);
-        
+        running = false;
     }
 }
