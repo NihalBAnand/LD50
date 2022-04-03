@@ -421,6 +421,8 @@ MonoBehaviour:
   cores: 0
   tars: 0
   teeth: 0
+  exp: 0
+  level: 0
 --- !u!61 &308738296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -612,7 +614,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnChance: 0.01
-  enemy: {fileID: 5592608718378014545, guid: fd88981ae8edee1498bab3d5c59edf25, type: 3}
+  enemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  winged: {fileID: 2290709804423085529, guid: ffbe3956c0c0c224aa1709f669d17508, type: 3}
+  teethy: {fileID: 369742891952899010, guid: 5a7bdc40841abca43a03f43d56db8e67, type: 3}
+  slime: {fileID: 7201623929026652773, guid: 25fa442cdc53b9944b299ee8cb9e2279, type: 3}
   rightSideSpawn: {fileID: 0}
   leftSideSpawn: {fileID: 0}
 --- !u!483693784 &465388397
@@ -2154,6 +2162,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3499053224706290922, guid: 3b59ce05568d2804e8e021b2f8a6a5df, type: 3}
+      propertyPath: ship
+      value: 
+      objectReference: {fileID: 465388394}
     - target: {fileID: 4343846494875391844, guid: 3b59ce05568d2804e8e021b2f8a6a5df, type: 3}
       propertyPath: m_Name
       value: Cannon
