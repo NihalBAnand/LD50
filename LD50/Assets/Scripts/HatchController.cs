@@ -5,6 +5,8 @@ using UnityEngine;
 public class HatchController : InteractableGeneric
 {
     private bool activated;
+    public GameObject logText;
+
     public override void Interaction(GameObject player)
     {
         if (!activated)
@@ -13,6 +15,8 @@ public class HatchController : InteractableGeneric
             Camera.main.transform.parent = GameObject.Find("Center").transform;
             Camera.main.transform.position = GameObject.Find("hull").transform.position;
             Camera.main.transform.position += new Vector3(0, 0, -10);
+
+            if (!logText.GetComponent<EntryController>().firstTrap) logText.GetComponent<EntryController>().firstTrap = true;
         }
         else
         {
@@ -27,6 +31,7 @@ public class HatchController : InteractableGeneric
     // Start is called before the first frame update
     void Start()
     {
+        logText = GameObject.Find("LogText");
         activated = false;
     }
 

@@ -11,6 +11,8 @@ public class CraftingController : InteractableGeneric
     private GameObject harmCraft;
 
     private GameObject player;
+
+    public GameObject logText;
     public override void Interaction(GameObject player)
     {
         if (!activated)
@@ -32,6 +34,7 @@ public class CraftingController : InteractableGeneric
     // Start is called before the first frame update
     void Start()
     {
+
         activated = false;
 
         slowCraft = GameObject.Find("CraftSlowTrap");
@@ -44,6 +47,8 @@ public class CraftingController : InteractableGeneric
         harmCraft.SetActive(false);
 
         player = GameObject.Find("Player");
+
+        logText = GameObject.Find("LogText");
     }
 
     // Update is called once per frame
@@ -58,11 +63,15 @@ public class CraftingController : InteractableGeneric
     {
         player.GetComponent<PlayerController>().teeth -= 5;
         player.GetComponent<PlayerController>().harmTraps += 1;
+
+        if (!logText.GetComponent<EntryController>().firstTrap) logText.GetComponent<EntryController>().firstTrap = true;
     }
 
     void craftSlowTrap()
     {
         player.GetComponent<PlayerController>().tars -= 5;
         player.GetComponent<PlayerController>().slowTraps += 1;
+
+        if (!logText.GetComponent<EntryController>().firstTrap) logText.GetComponent<EntryController>().firstTrap = true;
     }
 }

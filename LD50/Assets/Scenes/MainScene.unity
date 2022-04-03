@@ -2794,7 +2794,7 @@ GameObject:
   - component: {fileID: 1604649073}
   - component: {fileID: 1604649076}
   m_Layer: 5
-  m_Name: Text
+  m_Name: LogText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2888,6 +2888,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1288772567641409a68037a0760aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstMonster: 0
+  twomins: 0
+  firstSail: 0
+  firstHull: 0
+  firstCore: 0
+  level6: 0
+  firstGun: 0
+  firstTrap: 0
+  ninemins: 0
 --- !u!1 &1736323671
 GameObject:
   m_ObjectHideFlags: 0

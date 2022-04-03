@@ -30,10 +30,15 @@ public class EntryController : MonoBehaviour
     public bool firstTrap = false;
     public bool ninemins = false;
 
+    //scroll stuff
+    int counter = 0;
+    bool isNext = false;
+    bool isPrev = false;
 
     void Start()
     {
-        gameObject.GetComponent<Text>().text = entrys[0];
+        displayed.Add(entrys[0]);
+        gameObject.GetComponent<Text>().text = displayed[0].ToString();
        
     
     }
@@ -42,10 +47,41 @@ public class EntryController : MonoBehaviour
     void Update()
     {
         addEntrys();
+        changeDisp();
+        gameObject.GetComponent<Text>().text = displayed[counter].ToString();
+
+    }
+
+    private void changeDisp()
+    {
+        if (counter == 0 && displayed.Count > 1) isNext = true;
+        if (counter == 9) isNext = false;
+        if (counter != 0 && displayed.Count>1) isPrev = true;
+        if (counter == 0) isPrev = false;
+
+        
+        if(Input.GetKeyDown(KeyCode.RightArrow) && isNext == true )
+        {
+            counter += 1;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && isPrev == true)
+        {
+            counter -= 1;
+        }
     }
 
     private void addEntrys()
     {
-        
+      
+        if (firstMonster) displayed.Add(entrys[1]);
+        if (twomins) displayed.Add(entrys[2]);
+        if (firstSail) displayed.Add(entrys[3]);
+        if (firstHull) displayed.Add(entrys[4]);
+        if (firstCore) displayed.Add(entrys[5]);
+        if (level6) displayed.Add(entrys[6]);
+        if (firstGun) displayed.Add(entrys[7]);
+        if (firstTrap) displayed.Add(entrys[8]);
+        if (ninemins) displayed.Add(entrys[9]);
+
     }
 }

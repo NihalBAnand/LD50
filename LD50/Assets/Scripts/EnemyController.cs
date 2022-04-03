@@ -13,11 +13,13 @@ public class EnemyController : MonoBehaviour
 
     public string type;
 
+    public GameObject logText;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+        logText = GameObject.Find("LogText");
     }
 
     // Update is called once per frame
@@ -42,6 +44,7 @@ public class EnemyController : MonoBehaviour
             {
                 case "w":
                     player.GetComponent<PlayerController>().cores += 1;
+                    if (!logText.GetComponent<EntryController>().firstTrap) logText.GetComponent<EntryController>().firstTrap = true;
                     break;
                 case "t":
                     player.GetComponent<PlayerController>().teeth += 1;
@@ -52,6 +55,7 @@ public class EnemyController : MonoBehaviour
             }
             player.GetComponent<PlayerController>().exp += 5;
             Destroy(gameObject);
+            if (!logText.GetComponent<EntryController>().firstMonster) logText.GetComponent<EntryController>().firstMonster = true;
         }
     }
 }
