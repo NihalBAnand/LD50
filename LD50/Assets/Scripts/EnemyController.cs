@@ -50,6 +50,7 @@ public class EnemyController : MonoBehaviour
                     player.GetComponent<PlayerController>().tars += 1;
                     break;
             }
+            player.GetComponent<PlayerController>().exp += 5;
             Destroy(gameObject);
         }
     }

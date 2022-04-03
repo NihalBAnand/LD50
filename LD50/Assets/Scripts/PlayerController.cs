@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +31,9 @@ public class PlayerController : MonoBehaviour
     public int tars;
     private Text teethCount;
     public int teeth;
+
+    public int exp;
+    public int level;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +61,9 @@ public class PlayerController : MonoBehaviour
         tars = 0;
         teethCount = GameObject.Find("TeethCounter").GetComponentInChildren<Text>();
         teeth = 0;
+
+        exp = 0;
+        level = 1;
     }
 
     // Update is called once per frame
@@ -109,6 +116,13 @@ public class PlayerController : MonoBehaviour
         coreCount.text = cores.ToString();
         tarCount.text = tars.ToString();
         teethCount.text = teeth.ToString();
+
+        if (exp > Math.Pow(level, 2))
+        {
+            exp -= (int)Math.Pow(level, 2);
+            level += 1;
+            Debug.Log("Level: " + level.ToString());
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
