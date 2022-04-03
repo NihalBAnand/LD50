@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
                 sr.flipX = true;
                 direction = "Left";
             }
-            if (Input.GetAxisRaw("Vertical") > 0)
+            else if (Input.GetAxisRaw("Vertical") > 0)
             {
                 anim.Play("PlayerUp");
                 direction = "Up";
