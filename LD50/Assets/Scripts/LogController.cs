@@ -12,7 +12,7 @@ public class LogController : InteractableGeneric
             {
                 activated = true;
                 Camera.main.transform.parent = GameObject.Find("Center").transform;
-                Camera.main.transform.position = GameObject.Find("Log").transform.position;
+                Camera.main.transform.position = GameObject.Find("LogIndicator").transform.position;
                 Camera.main.transform.position += new Vector3(0, 0, -10);
             }
             else
