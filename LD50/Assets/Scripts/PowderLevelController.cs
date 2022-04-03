@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,12 +10,12 @@ public class PowderLevelController : MonoBehaviour
     public GameObject cannon;
     void Start()
     {
-        gameObject.GetComponent<Text>().text = cannon.GetComponent<CannonController>().gunpowderStack.ToString();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        gameObject.GetComponent<Text>().text = Math.Round(cannon.GetComponent<CannonController>().gunpowderStack).ToString();
     }
 }

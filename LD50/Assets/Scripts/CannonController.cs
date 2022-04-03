@@ -20,6 +20,7 @@ public class CannonController : InteractableGeneric
             Camera.main.transform.parent = GameObject.Find("Center").transform;
             Camera.main.transform.position = GameObject.Find("GunpowderStorage").transform.position;
             Camera.main.transform.position += new Vector3(0, 0, -10);
+            GameObject.Find("GunpowderStorage").transform.Find("Canvas").gameObject.SetActive(true);
         }
         else
         {
@@ -27,6 +28,7 @@ public class CannonController : InteractableGeneric
             Camera.main.transform.parent = GameObject.FindGameObjectWithTag("Player").transform;
             Camera.main.transform.position = GameObject.Find("Player").transform.position;
             Camera.main.transform.position += new Vector3(0, 0, -10);
+            GameObject.Find("GunpowderStorage").transform.Find("Canvas").gameObject.SetActive(false);
             GameObject.Find("Player").GetComponent<PlayerController>().interacting = false;
         }
     }
@@ -40,7 +42,7 @@ public class CannonController : InteractableGeneric
         enemySpawnFactor = 2;
         StartCoroutine(depleteCoroutine());
         activated = false;
-
+        GameObject.Find("GunpowderStorage").transform.Find("Canvas").gameObject.SetActive(false);
     }
 
     // Update is called once per frame

@@ -23,6 +23,13 @@ public class PlayerController : MonoBehaviour
 
     public bool vulnerable;
     public int health;
+
+    private Text coreCount;
+    public int cores;
+    private Text tarCount;
+    public int tars;
+    private Text teethCount;
+    public int teeth;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +49,13 @@ public class PlayerController : MonoBehaviour
 
         vulnerable = true;
         health = 100;
+
+        coreCount = GameObject.Find("CoreCounter").GetComponentInChildren<Text>();
+        cores = 0;
+        tarCount = GameObject.Find("TarCounter").GetComponentInChildren<Text>();
+        tars = 0;
+        teethCount = GameObject.Find("TeethCounter").GetComponentInChildren<Text>();
+        teeth = 0;
     }
 
     // Update is called once per frame
@@ -90,6 +104,10 @@ public class PlayerController : MonoBehaviour
         {
             interacting = false;
         }
+
+        coreCount.text = cores.ToString();
+        tarCount.text = tars.ToString();
+        teethCount.text = teeth.ToString();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
