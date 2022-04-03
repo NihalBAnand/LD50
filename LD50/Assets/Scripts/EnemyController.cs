@@ -10,35 +10,28 @@ public class EnemyController : MonoBehaviour
 
     public float speed;
     public int damage;
+    public int health;
 
     public string type;
 
     public GameObject logText;
+
+    private float lastHit;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
-        //logText = GameObject.Find("LogText");
+        logText = GameObject.Find("LogText");
+        lastHit = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         rb.MovePosition(Vector2.MoveTowards(transform.position, player.transform.position, speed));
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "Player")
-        {
-            
-        }
-    }
-
-    private void OnMouseOver()
-    {
-        if (Input.GetMouseButton(1))
+        if (health <= 0)
         {
             switch (type)
             {
@@ -54,8 +47,30 @@ public class EnemyController : MonoBehaviour
                     break;
             }
             player.GetComponent<PlayerController>().exp += 5;
-            Destroy(gameObject);
             if (!logText.GetComponent<EntryController>().firstMonster) logText.GetComponent<EntryController>().firstMonster = true;
+            Destroy(gameObject);
+            
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.transform.parent.tag == "Player")
+        {
+            if (collision.name.Contains(player.GetComponent<PlayerController>().direction) && player.GetComponent<PlayerController>().swordAudio.isPlaying && Time.fixedUnscaledTime - lastHit > 0.6f)
+            {
+                rb.AddForce((transform.position - collision.transform.position) * 2500);
+                health -= player.GetComponent<PlayerController>().damage;
+                lastHit = Time.fixedUnscaledTime;
+                StartCoroutine(colorChange());
+            }
+        }
+    }
+
+    IEnumerator colorChange()
+    {
+        GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, .75f);
+        yield return new WaitForSeconds(.7f);
+        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
     }
 }

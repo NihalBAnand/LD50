@@ -147,5 +147,6 @@ MonoBehaviour:
   player: {fileID: 0}
   speed: 0.03
   damage: 20
+  health: 45
   type: t
   logText: {fileID: 0}
