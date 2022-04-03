@@ -18,12 +18,14 @@ public class CraftingController : InteractableGeneric
             activated = true;
             slowCraft.SetActive(true);
             harmCraft.SetActive(true);
+            Camera.main.transform.parent = transform;
         }
         else
         {
             activated = false;
             slowCraft.SetActive(false);
             harmCraft.SetActive(false);
+            Camera.main.transform.parent = player.transform;
         }
     }
 
