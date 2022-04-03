@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
-        logText = GameObject.Find("LogText");
+        //logText = GameObject.Find("LogText");
     }
 
     // Update is called once per frame

@@ -12,7 +12,7 @@ public class SailIntroController : InteractableGeneric
     {
         activated = false;
 
-        logText = GameObject.Find("LogText");
+        //logText = GameObject.Find("LogText");
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class SailIntroController : InteractableGeneric
             Camera.main.transform.position = GameObject.Find("sail").transform.position;
             Camera.main.transform.position += new Vector3(0, 0, -10);
 
-            if (!logText.GetComponent<EntryController>().firstTrap) logText.GetComponent<EntryController>().firstTrap = true;
+            if (!logText.GetComponent<EntryController>().firstSail) logText.GetComponent<EntryController>().firstSail = true;
         }
         else
         {

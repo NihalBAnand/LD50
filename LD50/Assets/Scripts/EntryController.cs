@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class EntryController : MonoBehaviour
 {
     // Start is called before the first frame 
-    string[] entrys = { "The situation is grim. Far more grim than I ever imagined it was possible to be. The cannons have started firing at things, things I can only see the vague shape of in these dark and choppy waters. I fear for my life, and I fear for <i>The Inevitable</i>. God help me...",
+    string[] entrys = { "Captain's Log",
+                        "The situation is grim. Far more grim than I ever imagined it was possible to be. The cannons have started firing at things, things I can only see the vague shape of in these dark and choppy waters. I fear for my life, and I fear for <i>The Inevitable</i>. God help me...",
                         "I’ve seen one of these monsters. They are unlike anything I’ve ever seen… and they seem bloodthirsty. They tried to kill me, but I managed to survive their attack with the help of my trusty cutlass. One of them had eyes like headlights that I can’t get out of my head… I think that, even if I survive this disaster, I shall not be the same as before it.",
                         "I often think of my crew, and I hate myself for not having done more for them. I see their faces whenever I close my eyes, and when I look over the railing, I see their faces, questioning, blaming me. “Why,” they ask, “Why did you not save us?” I have no answer. As their captain, I have failed them.",
                         "The main sail has seen better days. I can patch it up as a temporary measure, but I cannot see a way to maintain it if this storm keeps up for much longer. These blasted monsters will take any chance they can to get at me, so I can’t furl it either. I can only really hope that <i>The Inevitable</i> lives up to her name, and gets me home safe.",
@@ -31,16 +32,18 @@ public class EntryController : MonoBehaviour
     public bool ninemins = false;
 
     //scroll stuff
-    int counter = 0;
+    public int counter = 0;
     bool isNext = false;
     bool isPrev = false;
 
     void Start()
     {
         displayed.Add(entrys[0]);
+        displayed.Add(entrys[1]);
         gameObject.GetComponent<Text>().text = displayed[0].ToString();
-       
-    
+
+        GameObject.Find("ForwardButton").GetComponent<Button>().onClick.AddListener(moveForward);
+        GameObject.Find("BackButton").GetComponent<Button>().onClick.AddListener(moveBack);
     }
 
     // Update is called once per frame
@@ -48,23 +51,23 @@ public class EntryController : MonoBehaviour
     {
         addEntrys();
         changeDisp();
-        gameObject.GetComponent<Text>().text = displayed[counter].ToString();
 
+        if (counter < 0)
+            counter = 0;
+        if (counter >= displayed.Count)
+            counter = displayed.Count - 1;
+        
+        gameObject.GetComponent<Text>().text = displayed[counter].ToString();
+        
     }
 
     private void changeDisp()
     {
-        if (counter == 0 && displayed.Count > 1) isNext = true;
-        if (counter == 9) isNext = false;
-        if (counter != 0 && displayed.Count>1) isPrev = true;
-        if (counter == 0) isPrev = false;
-
-        
-        if(Input.GetKeyDown(KeyCode.RightArrow) && isNext == true )
+        if(Input.GetKeyDown(KeyCode.RightArrow))
         {
             counter += 1;
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && isPrev == true)
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             counter -= 1;
         }
@@ -73,15 +76,25 @@ public class EntryController : MonoBehaviour
     private void addEntrys()
     {
       
-        if (firstMonster) displayed.Add(entrys[1]);
-        if (twomins) displayed.Add(entrys[2]);
-        if (firstSail) displayed.Add(entrys[3]);
-        if (firstHull) displayed.Add(entrys[4]);
-        if (firstCore) displayed.Add(entrys[5]);
-        if (level6) displayed.Add(entrys[6]);
-        if (firstGun) displayed.Add(entrys[7]);
-        if (firstTrap) displayed.Add(entrys[8]);
-        if (ninemins) displayed.Add(entrys[9]);
+        if (firstMonster) displayed.Add(entrys[2]);
+        if (twomins) displayed.Add(entrys[3]);
+        if (firstSail) displayed.Add(entrys[4]);
+        if (firstHull) displayed.Add(entrys[5]);
+        if (firstCore) displayed.Add(entrys[6]);
+        if (level6) displayed.Add(entrys[7]);
+        if (firstGun) displayed.Add(entrys[8]);
+        if (firstTrap) displayed.Add(entrys[9]);
+        if (ninemins) displayed.Add(entrys[10]);
 
+    }
+
+    public void moveForward()
+    {
+        counter++;
+    }
+
+    public void moveBack()
+    {
+        counter--;
     }
 }

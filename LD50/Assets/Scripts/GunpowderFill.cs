@@ -30,9 +30,8 @@ public class GunpowderFill : MonoBehaviour
     IEnumerator fillGunpowder()
     {
         running = true;
-        Debug.Log(cannon.GetComponent<CannonController>().gunpowderStack);
-        cannon.GetComponent<CannonController>().addGunpowder();
-        yield return new WaitForSeconds(1.0f);
+        GameObject.Find("GunpowderLevel").GetComponent<PowderLevelController>().addGunpowder();
+        yield return new WaitForSeconds(0.5f);
         running = false;
     }
 }
