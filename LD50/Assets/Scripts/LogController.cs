@@ -14,12 +14,12 @@ public class LogController : InteractableGeneric
                 activated = true;
                 log.SetActive(true);
 
-        }
+            }
             else
             {
                 activated = false;
-                log.SetActive(true);
-        }
+                log.SetActive(false);
+            }
         }
 
         // Start is called before the first frame update

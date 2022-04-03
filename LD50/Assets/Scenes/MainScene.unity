@@ -2107,8 +2107,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 93.260254, y: -35.3479}
-  m_SizeDelta: {x: 2866.7036, y: 1791.7235}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 946.3855, y: 570.1881}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1287460433
 MonoBehaviour:
@@ -2672,8 +2672,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.5293, y: -163.8505}
-  m_SizeDelta: {x: 5695.3, y: 2928.0122}
+  m_AnchoredPosition: {x: 0.4968, y: -35.3516}
+  m_SizeDelta: {x: 1805.3145, y: 876.7851}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1604649073
 MonoBehaviour:
@@ -2687,7 +2687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!114 &1604649074
@@ -2703,7 +2703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2711,7 +2711,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 99cb20d6e4bf6704283f940f216efbb0, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
@@ -2726,7 +2726,7 @@ MonoBehaviour:
   m_Text: The situation is grim. Far more grim than I ever imagined it was possible
     to be. The cannons have started firing at things, things I can only see the vague
     shape of in these dark and choppy waters. I fear for my life, and I fear for
-    The Inevitable. God help me
+    <i>The Inevitable</i>. God help me...
 --- !u!222 &1604649075
 CanvasRenderer:
   m_ObjectHideFlags: 0
