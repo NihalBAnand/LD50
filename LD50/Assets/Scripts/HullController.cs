@@ -40,6 +40,7 @@ public class HullController : MonoBehaviour
                 GameObject newHole = Instantiate(hole);
                 newHole.transform.parent = gameObject.transform;
                 newHole.transform.position = new Vector3(Random.Range((float)(transform.position.x - (0.5 * renderer.bounds.size.x) + 1), (float)(transform.position.x + (0.5 * renderer.bounds.size.x) - 1)), Random.Range((float)(transform.position.y - (0.5 * renderer.bounds.size.y) + 1), (float)(transform.position.y + (0.5 * renderer.bounds.size.y) - 1)));
+                newHole.transform.localScale = new Vector3(0.5f, 0.5f, 1);
                 Debug.Log(newHole.transform.position);
                 holes += 1;
             }

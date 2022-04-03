@@ -49,7 +49,6 @@ public class BoardController : MonoBehaviour
                 Destroy(collision.gameObject);
                 //create a new board to use in the board spot
                 GameObject newBoard = Instantiate(board);
-                newBoard.transform.parent = gameObject.transform.parent;
                 newBoard.transform.position = spawnPos;
                 //kill this board -- it's still there and can be seen, but does nothing. Tears can spawn on boardes
                 Destroy(GetComponent<Rigidbody2D>());
