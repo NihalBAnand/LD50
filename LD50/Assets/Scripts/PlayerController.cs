@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     public float speed;
 
+    private SpriteRenderer sr;
+
     public GameObject spacebarIndicator;
     private bool canInteract;
     public GameObject interactor;
@@ -40,10 +42,15 @@ public class PlayerController : MonoBehaviour
 
     public int exp;
     public int level;
+
+    private string direction;
+    private Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        sr = GetComponent<SpriteRenderer>();
 
         spacebarIndicator = GameObject.Find("SpacebarIndicator");
         spacebarIndicator.SetActive(false);
@@ -73,6 +80,9 @@ public class PlayerController : MonoBehaviour
 
         exp = 0;
         level = 1;
+
+        anim = GetComponent<Animator>();
+        direction = "Down";
     }
 
     // Update is called once per frame
@@ -89,6 +99,29 @@ public class PlayerController : MonoBehaviour
             //Basic movement -- this works, pls no touch
             rb.MovePosition(new Vector2(transform.position.x + Input.GetAxisRaw("Horizontal") * speed, transform.position.y + Input.GetAxisRaw("Vertical") * speed));
 
+            if (Input.GetAxisRaw("Horizontal") > 0)
+            {
+                anim.Play("PlayerRight");
+                sr.flipX = false;
+                direction = "Right";
+            }
+            else if (Input.GetAxisRaw("Horizontal") < 0)
+            {
+                anim.Play("PlayerRight");
+                sr.flipX = true;
+                direction = "Left";
+            }
+            if (Input.GetAxisRaw("Vertical") > 0)
+            {
+                anim.Play("PlayerUp");
+                direction = "Up";
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0)
+            {
+                anim.Play("PlayerDown");
+                direction = "Down";
+            }
+
             if ((Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) && !stepAudio.GetComponent<AudioSource>().isPlaying)
             {
                 stepAudio.GetComponent<AudioSource>().clip = steps[1];
@@ -97,6 +130,23 @@ public class PlayerController : MonoBehaviour
             else if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
             {
                 stepAudio.GetComponent<AudioSource>().Stop();
+                switch (direction)
+                {
+                    case "Down":
+                        anim.Play("PlayerDownIdle");
+                        break;
+                    case "Up":
+                        anim.Play("PlayerUpIdle");
+                        break;
+                    case "Left":
+                        anim.Play("PlayerRightIdle");
+                        sr.flipX = true;
+                        break;
+                    case "Right":
+                        anim.Play("PlayerRightIdle");
+                        sr.flipX = false;
+                        break;
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha1) && harmTraps >= 1)
