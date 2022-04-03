@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour
     public float speed;
     public int damage;
 
+    public string type;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,26 @@ public class EnemyController : MonoBehaviour
         if (collision.collider.tag == "Player")
         {
             
+        }
+    }
+
+    private void OnMouseOver()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            switch (type)
+            {
+                case "w":
+                    player.GetComponent<PlayerController>().cores += 1;
+                    break;
+                case "t":
+                    player.GetComponent<PlayerController>().teeth += 1;
+                    break;
+                case "s":
+                    player.GetComponent<PlayerController>().tars += 1;
+                    break;
+            }
+            Destroy(gameObject);
         }
     }
 }

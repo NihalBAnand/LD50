@@ -48,7 +48,7 @@ public class CannonController : InteractableGeneric
     // Update is called once per frame
     void Update()
     {
-        if (gunpowderStack< 1)
+        if (gunpowderStack< 1 && cannonStatus)
         {
             cannonStatus = false;
             gunpowderStack = 0;

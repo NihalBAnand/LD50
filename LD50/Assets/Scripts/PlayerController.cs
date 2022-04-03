@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
         vulnerable = true;
         health = 100;
+        StartCoroutine(passiveHeal());
 
         coreCount = GameObject.Find("CoreCounter").GetComponentInChildren<Text>();
         cores = 0;
@@ -150,5 +151,18 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1.7f);
         vulnerable = true;
         GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1f);
+    }
+
+    private IEnumerator passiveHeal()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(7.5f);
+            if (health + 10 <= 100)
+                health += 10;
+            if (health + 10 > 100)
+                health = 100;
+            Debug.Log(health);
+        }
     }
 }
