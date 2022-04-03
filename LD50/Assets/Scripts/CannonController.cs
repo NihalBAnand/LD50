@@ -57,12 +57,24 @@ public class CannonController : InteractableGeneric
         }
         
     }
+
+    public void addGunpowder()
+    {
+        if (gunpowderStack < 100)
+        {
+            gunpowderStack += 5;
+        }
+        else
+        {
+            gunpowderStack = 100;
+        }
+    }
     IEnumerator depleteCoroutine()
     {
         while (gunpowderStack>0)
         {
             gunpowderStack *= 1 - depletionRate;
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(.1f);
             
         }
     }
