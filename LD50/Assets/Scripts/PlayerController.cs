@@ -32,6 +32,12 @@ public class PlayerController : MonoBehaviour
     private Text teethCount;
     public int teeth;
 
+    public int harmTraps;
+    public int slowTraps;
+
+    public GameObject harmTrap;
+    public GameObject slowTrap;
+
     public int exp;
     public int level;
     // Start is called before the first frame update
@@ -62,6 +68,9 @@ public class PlayerController : MonoBehaviour
         teethCount = GameObject.Find("TeethCounter").GetComponentInChildren<Text>();
         teeth = 0;
 
+        harmTraps = 0;
+        slowTraps = 0;
+
         exp = 0;
         level = 1;
     }
@@ -90,7 +99,21 @@ public class PlayerController : MonoBehaviour
                 stepAudio.GetComponent<AudioSource>().Stop();
             }
 
+            if (Input.GetKeyDown(KeyCode.Alpha1) && harmTraps >= 1)
+            {
+                GameObject newHarmTrap = Instantiate(harmTrap);
+                newHarmTrap.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                newHarmTrap.transform.position += new Vector3(0, 0, 10);
+                harmTraps -= 1;
+            }
 
+            if (Input.GetKeyDown(KeyCode.Alpha2) && slowTraps >= 1)
+            {
+                GameObject newSlowTrap = Instantiate(slowTrap);
+                newSlowTrap.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                newSlowTrap.transform.position += new Vector3(0, 0, 10);
+                slowTraps -= 1;
+            }
 
             if (Input.GetMouseButtonDown(0) && !swordAudio.isPlaying)
             {
