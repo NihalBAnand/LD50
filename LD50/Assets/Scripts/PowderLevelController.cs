@@ -15,6 +15,9 @@ public class PowderLevelController : MonoBehaviour
 
     public GameObject ship;
 
+    private float powderBarRange;
+    private float powderBarMin;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,9 @@ public class PowderLevelController : MonoBehaviour
         ship = GameObject.Find("ShipController");
 
         StartCoroutine(depleteCoroutine());
+
+        powderBarMin = 220.4576f;
+        powderBarRange = 1920 - 191.3589f;
     }
 
     // Update is called once per frame
@@ -41,7 +47,7 @@ public class PowderLevelController : MonoBehaviour
 
         if (gunpowderStack > 100)
             gunpowderStack = 100;
-        gameObject.GetComponent<Text>().text = Math.Round(gunpowderStack).ToString();
+        GameObject.Find("GunpowderBar").GetComponent<RectTransform>().offsetMax = new Vector2(-1 * (191.3589f + powderBarRange * (1 - (gunpowderStack / 100))), GameObject.Find("GunpowderBar").GetComponent<RectTransform>().offsetMax.y);
     }
 
     public void addGunpowder()

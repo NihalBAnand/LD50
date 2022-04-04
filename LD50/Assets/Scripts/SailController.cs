@@ -10,12 +10,16 @@ public class SailController : MonoBehaviour
     public Sprite[] tearSprites = new Sprite[3];
 
     private Renderer renderer;
+
+    private GameObject ship;
     // Start is called before the first frame update
     void Start()
     {
         tears = 0;
         StartCoroutine(updateTears(2));
         renderer = GetComponent<Renderer>();
+
+        ship = GameObject.Find("ShipController");
     }
 
     // Update is called once per frame
@@ -45,6 +49,9 @@ public class SailController : MonoBehaviour
                 newTear.transform.position = new Vector3(Random.Range((float)(transform.position.x - (0.5 * renderer.bounds.size.x) + 1), (float)(transform.position.x + (0.5 * renderer.bounds.size.x) - 1)), Random.Range((float)(transform.position.y - (0.5 * renderer.bounds.size.y) + 1), (float)(transform.position.y + (0.5 * renderer.bounds.size.y) - 1)));
                 Debug.Log(newTear.transform.position);
                 tears += 1;
+                if (tears > 1)
+                    ship.GetComponent<ShipController>().enemySpawnChance /= tears - 1;
+                ship.GetComponent<ShipController>().enemySpawnChance *= tears;
             }
         }
     }
