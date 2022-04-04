@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.transform.parent.tag == "Player")
         {
-            if (collision.name.Contains(player.GetComponent<PlayerController>().direction) && player.GetComponent<PlayerController>().swordAudio.isPlaying && Time.fixedUnscaledTime - lastHit > 0.6f)
+            if (collision.name.Contains(player.GetComponent<PlayerController>().direction) && player.GetComponent<PlayerController>().swordAudio.isPlaying && Time.fixedUnscaledTime - lastHit > 0.8f)
             {
                 rb.AddForce((transform.position - collision.transform.position) * 2500);
                 health -= player.GetComponent<PlayerController>().damage;
@@ -69,8 +69,19 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator colorChange()
     {
-        GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, .75f);
-        yield return new WaitForSeconds(.7f);
-        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
+        if (GetComponent<SpriteRenderer>() != null)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, .75f);
+            yield return new WaitForSeconds(.3f);
+            GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1);
+        }
+        else
+        {
+            transform.Find("Top").gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, .75f);
+            transform.Find("Bottom").gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 0, 0, .75f);
+            yield return new WaitForSeconds(.3f);
+            transform.Find("Top").gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1f);
+            transform.Find("Bottom").gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 1f);
+        }
     }
 }

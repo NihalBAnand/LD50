@@ -98,8 +98,11 @@ public class PlayerController : MonoBehaviour
 
         if (!interacting) 
         {
-            //Basic movement -- this works, pls no touch
-            rb.MovePosition(new Vector2(transform.position.x + Input.GetAxisRaw("Horizontal") * speed, transform.position.y + Input.GetAxisRaw("Vertical") * speed));
+            if (!swordAudio.isPlaying)
+            {
+                //Basic movement -- this works, pls no touch
+                rb.MovePosition(new Vector2(transform.position.x + Input.GetAxisRaw("Horizontal") * speed, transform.position.y + Input.GetAxisRaw("Vertical") * speed));
+            }
 
             if (!swordAudio.isPlaying)
             {
@@ -219,7 +222,8 @@ public class PlayerController : MonoBehaviour
             damage = 10 + (5 * level);
             Debug.Log("Level: " + level.ToString());
         }
-        
+
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, 3f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

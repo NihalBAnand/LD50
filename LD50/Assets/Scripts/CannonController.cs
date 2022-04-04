@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class CannonController : InteractableGeneric
 {
     // Start is called before the first frame update
@@ -12,6 +13,9 @@ public class CannonController : InteractableGeneric
 
     private AudioSource audioS;
     public Animator animator;
+
+    public Light light;
+    private bool dimming;
 
     public override void Interaction(GameObject player)
     {
@@ -49,6 +53,10 @@ public class CannonController : InteractableGeneric
 
         animator = GetComponent<Animator>();
         animator.Play("CannonIdle");
+
+        light = transform.Find("Point Light").gameObject.GetComponent<Light>();
+        light.intensity = 0;
+        dimming = false;
     }
 
     // Update is called once per frame
@@ -57,6 +65,8 @@ public class CannonController : InteractableGeneric
         if (!AnimatorIsPlaying(animator, "CannonFire"))
         {
             animator.Play("CannonIdle");
+            if (!dimming)
+                StartCoroutine(dimLight());
         }
         
     }
@@ -82,8 +92,20 @@ public class CannonController : InteractableGeneric
             {
                 audioS.Play();
                 GetComponent<Animator>().Play("CannonFire");
+                light.intensity = 5;
             }
         }
+    }
+
+    IEnumerator dimLight()
+    {
+        dimming = true;
+        while (light.intensity > 0)
+        {
+            yield return new WaitForSeconds(0.05f);
+            light.intensity -= 1;
+        }
+        dimming = false;
     }
 
 }
