@@ -26,6 +26,8 @@ public class CannonController : InteractableGeneric
             Camera.main.transform.position = GameObject.Find("GunpowderStorage").transform.position;
             Camera.main.transform.position += new Vector3(0, 0, -10);
             GameObject.Find("GunpowderLevel").GetComponent<Text>().enabled = true;
+
+            player.GetComponent<PlayerController>().atGuns = true;
         }
         else
         {
@@ -35,6 +37,8 @@ public class CannonController : InteractableGeneric
             Camera.main.transform.position += new Vector3(0, 0, -10);
             //GameObject.Find("GunpowderStorage").transform.Find("Canvas").gameObject.SetActive(false);
             GameObject.Find("GunpowderLevel").GetComponent<Text>().enabled = false;
+
+            player.GetComponent<PlayerController>().atGuns = false;
         }
     }
 

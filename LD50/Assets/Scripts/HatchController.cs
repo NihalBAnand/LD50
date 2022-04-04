@@ -17,6 +17,8 @@ public class HatchController : InteractableGeneric
             Camera.main.transform.position += new Vector3(0, 0, -10);
 
             if (!logText.GetComponent<EntryController>().firstTrap) logText.GetComponent<EntryController>().firstTrap = true;
+
+            player.GetComponent<PlayerController>().atHull = true;
         }
         else
         {
@@ -25,6 +27,8 @@ public class HatchController : InteractableGeneric
             Camera.main.transform.position = GameObject.Find("Player").transform.position;
             Camera.main.transform.position += new Vector3(0, 0, -10);
             GameObject.Find("Player").GetComponent<PlayerController>().interacting = false;
+
+            player.GetComponent<PlayerController>().atHull = false;
         }
     }
 

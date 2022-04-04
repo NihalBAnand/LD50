@@ -46,6 +46,14 @@ public class PlayerController : MonoBehaviour
 
     public string direction;
     private Animator anim;
+
+    public GameObject controlsText;
+    private bool controlsUp;
+
+    public bool atHull;
+    public bool atSail;
+    public bool atGuns;
+    public bool atLight;
     // Start is called before the first frame update
     void Start()
     {
@@ -85,6 +93,14 @@ public class PlayerController : MonoBehaviour
 
         anim = GetComponent<Animator>();
         direction = "Down";
+
+        atHull = false;
+        atSail = false;
+        atGuns = false;
+        atLight = false;
+
+        controlsUp = false;
+        controlsText.transform.parent.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -193,6 +209,77 @@ public class PlayerController : MonoBehaviour
                         sr.flipX = false;
                         break;
                 }
+            }
+
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && ((atSail || atHull || atGuns || atLight) || (!interacting)))
+        {
+            if (!controlsUp)
+            {
+                controlsUp = true;
+                controlsText.transform.parent.gameObject.SetActive(true);
+                if (atHull)
+                {
+                    controlsText.GetComponent<Text>().text = @"Controls
+
+Click and drag the boards to
+cover holes that appear. 
+
+Check back every once in a
+while to keep your ship afloat.";
+                }
+                else if (atSail)
+                {
+                    controlsText.GetComponent<Text>().text = @"Controls
+
+Click and drag the patches to 
+cover tears that appear. 
+
+Check back every once in a 
+while to keep your sail intact.";
+                }
+                else if (atGuns)
+                {
+                    controlsText.GetComponent<Text>().text = @"Controls
+
+Click and hold on the bag of 
+gunpowder to fill the powder 
+in the cannons. 
+
+Check back every once in a 
+while to make sure the 
+cannons are still firing to 
+keep some monsters at bay.";
+                }
+                else if (atLight)
+                {
+                    controlsText.GetComponent<Text>().text = @"Controls
+
+Click the light to give it 
+monster cores so it stays lit.";
+                }
+                else
+                {
+                    controlsText.GetComponent<Text>().text = @"Controls
+
+Use arrow keys to move
+
+Press space to interact
+
+Click the left mouse button to
+attack monsters
+
+Press escape to open controls
+(they may be different on 
+different screens)";
+                }
+            }
+            else
+            {
+                controlsUp = false;
+                controlsText.transform.parent.gameObject.SetActive(false);
             }
         }
 
