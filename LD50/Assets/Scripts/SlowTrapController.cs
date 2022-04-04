@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SlowTrapController : MonoBehaviour
 {
-    private int usesRemaining;
+    public int usesRemaining;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,12 +35,13 @@ public class SlowTrapController : MonoBehaviour
         if (collision.tag == "Player")
         {
             collision.GetComponent<PlayerController>().speed *= 2;
+            usesRemaining -= 1;
         }
         else if (collision.tag == "Monster")
         {
             collision.GetComponent<EnemyController>().speed *= 2;
         }
-        usesRemaining -= 1;
+        
         if (usesRemaining <= 0)
         {
             Destroy(gameObject);
