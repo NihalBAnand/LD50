@@ -52,6 +52,17 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
             
         }
+
+        if (transform.position.x > player.transform.position.x)
+        {
+            if (GetComponent<SpriteRenderer>() != null)
+                GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            if (GetComponent<SpriteRenderer>() != null)
+                GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
