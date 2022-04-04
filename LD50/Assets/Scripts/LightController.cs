@@ -8,11 +8,13 @@ public class LightController : MonoBehaviour
     private GameObject player;
     private GameObject light;
     private UnityEngine.UI.Text indicator;
+    private GameObject miniLight;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
         light = GameObject.Find("Main light");
+        miniLight = GameObject.Find("LightIndicator");
         indicator = GameObject.Find("MaxLightIndicator").GetComponent<UnityEngine.UI.Text>();
 
         StartCoroutine(lightDecay());
@@ -34,6 +36,7 @@ public class LightController : MonoBehaviour
         {
             indicator.enabled = false;
         }
+        miniLight.GetComponent<Light>().intensity = light.GetComponent<Light>().intensity
     }
 
     private void OnMouseDown()
