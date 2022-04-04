@@ -327,16 +327,19 @@ different screens)";
         slowTrapText.text = "x" + slowTraps.ToString();
         harmTrapText.text = "x" + harmTraps.ToString();
 
+        GameObject.Find("Level").GetComponent<Text>().text = "Level " + level.ToString();
+
         if (exp > Math.Pow(level, 2))
         {
             exp -= (int)Math.Pow(level, 2);
             level += 1;
-            damage = 10 + (5 * level);
             if (level == 6)
             {
                 if (!logText.GetComponent<EntryController>().level6) logText.GetComponent<EntryController>().level6 = true;
             }
         }
+        damage = 10 + (5 * level);
+        GameObject.Find("Experience").GetComponent<RectTransform>().offsetMax = new Vector2((float)(-1 * (51.11015f + (447) * (1 - (exp / Math.Pow(level, 2))))), GameObject.Find("Experience").GetComponent<RectTransform>().offsetMax.y);
 
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, 3f);
     }
