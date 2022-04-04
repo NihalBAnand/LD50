@@ -24,7 +24,7 @@ public class CannonController : InteractableGeneric
             activated = true;
             Camera.main.transform.parent = GameObject.Find("Center").transform;
             Camera.main.transform.position = GameObject.Find("GunpowderStorage").transform.position;
-            Camera.main.transform.position += new Vector3(0, 0, -10);
+            Camera.main.transform.position += new Vector3(0, 1.4f, -10);
             GameObject.Find("GunpowderLevel").GetComponent<Image>().enabled = true;
             GameObject.Find("GunpowderBar").GetComponent<Image>().enabled = true;
 
