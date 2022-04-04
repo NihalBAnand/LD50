@@ -16,6 +16,7 @@ public class LightController : MonoBehaviour
         indicator = GameObject.Find("MaxLightIndicator").GetComponent<UnityEngine.UI.Text>();
 
         StartCoroutine(lightDecay());
+
     }
 
     // Update is called once per frame
@@ -55,5 +56,8 @@ public class LightController : MonoBehaviour
                 light.GetComponent<Light>().intensity -= 1;
             } 
         }
+
     }
+
+    
 }
