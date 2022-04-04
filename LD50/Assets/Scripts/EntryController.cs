@@ -15,10 +15,10 @@ public class EntryController : MonoBehaviour
                         "As if matters could not get any worse, the hull has begun to leak. I suspect that there are some underwater monsters, trying to get in. As with the sails, I can only patch up holes as they appear. This situation is increasingly becoming hopeless.",
                          "It seems that the light can be refueled with some sort of crystal from the monsters, similar to quartz and the like, but… dirty, somehow. Tainted. Regardless, results are results, and I am glad to be able to hope, even a little bit. I wonder if I deserve to, after what I’ve done",
                          "The rain is relentless. I had dared to hope the storm would be brief, but that hope is dashed by reality. It’s been going for hours now. Lightning bolts give me some light by which to see the monsters as they approach, but much of me would rather be left blissfully unaware.",
-                         "If anyone else is reading this, I ask that you deliver this log to the family of Jonathan Wainwright of Elindra. Tell them, if I am still in living memory, that I love them. No, even if I am not… I don’t know if I write this because I want to be remembered. I don’t know much anymore… ",
+                         "If anyone else is reading this, I ask that you deliver this log to the family of Jonathan Wainwright of Elindra City. Tell them, if I am still in living memory, that I love them. No, even if I am not… I don’t know if I write this because I want to be remembered. I don’t know much anymore… ",
                          "I feel that dawn must be approaching. It has been a long night indeed, but I dare not believe that my ordeal will end with the rising of the sun. I do believe I will struggle to my last breath, and I will die, here at sea, devoured by one of these terrible creatures. There are worse fates, I suppose, but I will fight as long as I can.",
                           "I see the rays of dawn. I see my crewmates, too. They want me to come with them, to join with the fate that I deserve, rotting at the bottom of the ocean with them. I tell them I cannot by choice depart this world, for I have a duty to my family to continue as long as I "};
-    ArrayList displayed = new ArrayList();
+    public ArrayList displayed = new ArrayList();
 
     //Factors
     public bool firstMonster = false;
@@ -30,6 +30,16 @@ public class EntryController : MonoBehaviour
     public bool firstGun = false;
     public bool firstTrap = false;
     public bool ninemins = false;
+
+    public bool firstMonsterDone = false;
+    public bool twominsDone = false;
+    public bool firstSailDone = false;
+    public bool firstHullDone = false;
+    public bool firstCoreDone = false;
+    public bool level6Done = false;
+    public bool firstGunDone = false;
+    public bool firstTrapDone = false;
+    public bool nineminsDone = false;
 
     //scroll stuff
     public int counter = 0;
@@ -75,16 +85,53 @@ public class EntryController : MonoBehaviour
 
     private void addEntrys()
     {
-      
-        if (firstMonster) displayed.Add(entrys[2]);
-        if (twomins) displayed.Add(entrys[3]);
-        if (firstSail) displayed.Add(entrys[4]);
-        if (firstHull) displayed.Add(entrys[5]);
-        if (firstCore) displayed.Add(entrys[6]);
-        if (level6) displayed.Add(entrys[7]);
-        if (firstGun) displayed.Add(entrys[8]);
-        if (firstTrap) displayed.Add(entrys[9]);
-        if (ninemins) displayed.Add(entrys[10]);
+
+        if (firstMonster && !firstMonsterDone)
+        {
+            firstMonsterDone = true;
+            displayed.Add(entrys[2]);
+
+        }
+        if (twomins && !twominsDone)
+        {
+            twominsDone = true;
+            displayed.Add(entrys[3]);
+        }
+        if (firstSail && !firstSailDone)
+        {
+            firstSailDone = true;
+            displayed.Add(entrys[4]);
+        }
+        if (firstHull && !firstHullDone)
+        {
+            firstHullDone = true;
+            displayed.Add(entrys[5]);
+        }
+        if (firstCore && !firstCoreDone)
+        {
+            firstCoreDone = true;
+            displayed.Add(entrys[6]);
+        }
+        if (level6 && !level6Done)
+        {
+            level6Done = true;
+            displayed.Add(entrys[7]);
+        }
+        if (firstGun && !firstGunDone)
+        {
+            firstGunDone = true;
+            displayed.Add(entrys[8]);
+        }
+        if (firstTrap && !firstTrapDone)
+        {
+            firstTrapDone = true;
+            displayed.Add(entrys[9]);
+        }
+        if (ninemins && !nineminsDone)
+        {
+            nineminsDone = true;
+            displayed.Add(entrys[10]);
+        }
 
     }
 
