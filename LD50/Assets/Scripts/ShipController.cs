@@ -22,6 +22,8 @@ public class ShipController : MonoBehaviour
         leftSideSpawn = GameObject.Find("LeftSpawnLocation");
 
         StartCoroutine(spawnEnemies());
+        StartCoroutine(lightningChance());
+        StartCoroutine(increaseEnemies());
 
         enemies[0] = winged;
         enemies[1] = teethy;
@@ -46,11 +48,6 @@ public class ShipController : MonoBehaviour
         if (Time.fixedUnscaledTime > 600)
         {
             Debug.Log("Game Won!");
-        }
-
-        if (Time.fixedUnscaledTime % 20 == 0)
-        {
-            enemySpawnChance += 0.01f;
         }
     }
 
@@ -77,6 +74,41 @@ public class ShipController : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private IEnumerator flashLightning()
+    {
+        int numTimes = Random.Range(1, 4);
+        GameObject lightning = GameObject.Find("Lightning Flash");
+        for (int i = 0; i < numTimes; i++)
+        {
+            lightning.GetComponent<Light>().enabled = true;
+            yield return new WaitForSeconds(0.1f);
+            lightning.GetComponent<Light>().enabled = false;
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    IEnumerator lightningChance()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(5);
+            if (Random.Range(0, 3) == 0)
+            {
+                StartCoroutine(flashLightning());
+
+            }
+        }
+    }
+
+    IEnumerator increaseEnemies()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(20);
+            enemySpawnChance += 0.01f;
         }
     }
 }
