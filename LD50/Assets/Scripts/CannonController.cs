@@ -29,6 +29,7 @@ public class CannonController : InteractableGeneric
             Camera.main.transform.position += new Vector3(0, 1.4f, -10);
             GameObject.Find("GunpowderLevel").GetComponent<Image>().enabled = true;
             GameObject.Find("GunpowderBar").GetComponent<Image>().enabled = true;
+            GameObject.Find("GunpowderBG").GetComponent<Image>().enabled = true;
 
             player.GetComponent<PlayerController>().atGuns = true;
 
@@ -43,6 +44,7 @@ public class CannonController : InteractableGeneric
             //GameObject.Find("GunpowderStorage").transform.Find("Canvas").gameObject.SetActive(false);
             GameObject.Find("GunpowderLevel").GetComponent<Image>().enabled = false;
             GameObject.Find("GunpowderBar").GetComponent<Image>().enabled = false;
+            GameObject.Find("GunpowderBG").GetComponent<Image>().enabled = false;
 
             player.GetComponent<PlayerController>().atGuns = false;
         }
@@ -57,6 +59,7 @@ public class CannonController : InteractableGeneric
         activated = false;
         GameObject.Find("GunpowderLevel").GetComponent<Image>().enabled = false; 
         GameObject.Find("GunpowderBar").GetComponent<Image>().enabled = false;
+        GameObject.Find("GunpowderBG").GetComponent<Image>().enabled = false;
 
         audioS = transform.Find("Audio Source").gameObject.GetComponent<AudioSource>();
 

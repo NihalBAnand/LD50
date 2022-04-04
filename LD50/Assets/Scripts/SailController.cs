@@ -12,11 +12,15 @@ public class SailController : MonoBehaviour
     private Renderer renderer;
 
     private GameObject ship;
+
+    private int diff;
     // Start is called before the first frame update
     void Start()
     {
         tears = 0;
-        StartCoroutine(updateTears(2));
+        diff = 0;
+
+        StartCoroutine(updateTears(diff));
         renderer = GetComponent<Renderer>();
 
         ship = GameObject.Find("ShipController");
@@ -50,9 +54,16 @@ public class SailController : MonoBehaviour
                 Debug.Log(newTear.transform.position);
                 tears += 1;
                 if (tears > 1)
-                    ship.GetComponent<ShipController>().enemySpawnChance /= tears - 1;
-                ship.GetComponent<ShipController>().enemySpawnChance *= tears;
+                    ship.GetComponent<ShipController>().enemySpawnChance /= (tears - 1) * 2;
+                ship.GetComponent<ShipController>().enemySpawnChance *= tears * 2;
             }
         }
+    }
+
+    public void increaseDifficulty()
+    {
+        StopAllCoroutines();
+        diff++;
+        StartCoroutine(updateTears(diff));
     }
 }

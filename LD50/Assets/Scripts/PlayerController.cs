@@ -344,6 +344,11 @@ different screens)";
         GameObject.Find("Health").GetComponent<RectTransform>().offsetMax = new Vector2(GameObject.Find("Health").GetComponent<RectTransform>().offsetMax.x, (float)(-1 * (409.5267f + (374) * (1 - (health / 100f)))));
 
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, 3f);
+
+        if (interacting)
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

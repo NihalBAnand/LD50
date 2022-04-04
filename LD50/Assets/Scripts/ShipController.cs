@@ -16,6 +16,8 @@ public class ShipController : MonoBehaviour
     public GameObject leftSideSpawn;
 
     public GameObject logText;
+
+    public int difficulty;
     void Start()
     {
         rightSideSpawn = GameObject.Find("RightSpawnLocation");
@@ -30,6 +32,8 @@ public class ShipController : MonoBehaviour
         enemies[2] = slime;
 
         logText = GameObject.Find("LogText");
+
+        difficulty = 0;
     }
 
     // Update is called once per frame
@@ -38,6 +42,20 @@ public class ShipController : MonoBehaviour
         if (Time.fixedUnscaledTime > 120)
         {
             if (!logText.GetComponent<EntryController>().twomins) logText.GetComponent<EntryController>().twomins = true;
+        }
+
+        if (Time.fixedUnscaledTime > 150 && difficulty == 0)
+        {
+            difficulty = 1;
+            GameObject.Find("hull").GetComponent<HullController>().increaseDifficulty();
+            GameObject.Find("sail").GetComponent<SailController>().increaseDifficulty();
+        }
+
+        if (Time.fixedUnscaledTime > 300 && difficulty == 1)
+        {
+            difficulty = 2;
+            GameObject.Find("hull").GetComponent<HullController>().increaseDifficulty();
+            GameObject.Find("sail").GetComponent<SailController>().increaseDifficulty();
         }
 
         if (Time.fixedUnscaledTime > 540)
@@ -49,6 +67,8 @@ public class ShipController : MonoBehaviour
         {
             Debug.Log("Game Won!");
         }
+
+        
     }
 
     private IEnumerator spawnEnemies()
