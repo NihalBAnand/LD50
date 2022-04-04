@@ -8,12 +8,16 @@ public class HullController : MonoBehaviour
     public int holes;
 
     private Renderer renderer;
+
+    private GameObject ship;
     // Start is called before the first frame update
     void Start()
     {
         holes = 0;
         StartCoroutine(updateTears(2));
         renderer = GetComponent<Renderer>();
+
+        ship = GameObject.Find("ShipController");
     }
 
     // Update is called once per frame
@@ -43,6 +47,9 @@ public class HullController : MonoBehaviour
                 newHole.transform.localScale = new Vector3(0.5f, 0.5f, 1);
                 Debug.Log(newHole.transform.position);
                 holes += 1;
+                if (holes > 1)
+                    ship.GetComponent<ShipController>().enemySpawnChance /= holes - 1;
+                ship.GetComponent<ShipController>().enemySpawnChance *= holes;
             }
         }
     }
