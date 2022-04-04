@@ -36,7 +36,7 @@ public class LightController : MonoBehaviour
         {
             indicator.enabled = false;
         }
-        miniLight.GetComponent<Light>().intensity = light.GetComponent<Light>().intensity
+        miniLight.GetComponent<Light>().intensity = light.GetComponent<Light>().intensity;
     }
 
     private void OnMouseDown()
