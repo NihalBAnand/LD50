@@ -341,6 +341,8 @@ different screens)";
         damage = 10 + (5 * level);
         GameObject.Find("Experience").GetComponent<RectTransform>().offsetMax = new Vector2((float)(-1 * (51.11015f + (447) * (1 - (exp / Math.Pow(level, 2))))), GameObject.Find("Experience").GetComponent<RectTransform>().offsetMax.y);
 
+        GameObject.Find("Health").GetComponent<RectTransform>().offsetMax = new Vector2(GameObject.Find("Health").GetComponent<RectTransform>().offsetMax.x, (float)(-1 * (409.5267f + (374) * (1 - (health / 100f)))));
+
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, 3f);
     }
 
