@@ -16,7 +16,7 @@ public class HatchController : InteractableGeneric
             Camera.main.transform.position = GameObject.Find("hull").transform.position;
             Camera.main.transform.position += new Vector3(0, 0, -10);
 
-            if (!logText.GetComponent<EntryController>().firstTrap) logText.GetComponent<EntryController>().firstTrap = true;
+            if (!logText.GetComponent<EntryController>().firstHull) logText.GetComponent<EntryController>().firstHull = true;
 
             player.GetComponent<PlayerController>().atHull = true;
         }

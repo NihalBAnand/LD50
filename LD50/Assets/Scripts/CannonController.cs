@@ -17,6 +17,8 @@ public class CannonController : InteractableGeneric
     public Light light;
     private bool dimming;
 
+    public GameObject logText;
+
     public override void Interaction(GameObject player)
     {
         if (!activated)
@@ -29,6 +31,8 @@ public class CannonController : InteractableGeneric
             GameObject.Find("GunpowderBar").GetComponent<Image>().enabled = true;
 
             player.GetComponent<PlayerController>().atGuns = true;
+
+            if (!logText.GetComponent<EntryController>().firstGun) logText.GetComponent<EntryController>().firstGun = true;
         }
         else
         {
@@ -64,6 +68,8 @@ public class CannonController : InteractableGeneric
         light = transform.Find("Point Light").gameObject.GetComponent<Light>();
         light.intensity = 0;
         dimming = false;
+
+        logText = GameObject.Find("LogText");
     }
 
     // Update is called once per frame

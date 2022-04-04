@@ -14,6 +14,8 @@ public class ShipController : MonoBehaviour
 
     public GameObject rightSideSpawn;
     public GameObject leftSideSpawn;
+
+    public GameObject logText;
     void Start()
     {
         rightSideSpawn = GameObject.Find("RightSpawnLocation");
@@ -24,12 +26,32 @@ public class ShipController : MonoBehaviour
         enemies[0] = winged;
         enemies[1] = teethy;
         enemies[2] = slime;
+
+        logText = GameObject.Find("LogText");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Time.fixedUnscaledTime > 120)
+        {
+            if (!logText.GetComponent<EntryController>().twomins) logText.GetComponent<EntryController>().twomins = true;
+        }
+
+        if (Time.fixedUnscaledTime > 540)
+        {
+            if (!logText.GetComponent<EntryController>().ninemins) logText.GetComponent<EntryController>().ninemins = true;
+        }
+
+        if (Time.fixedUnscaledTime > 600)
+        {
+            Debug.Log("Game Won!");
+        }
+
+        if (Time.fixedUnscaledTime % 20 == 0)
+        {
+            enemySpawnChance += 0.01f;
+        }
     }
 
     private IEnumerator spawnEnemies()

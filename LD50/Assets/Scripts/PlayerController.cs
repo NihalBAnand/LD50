@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
     public int harmTraps;
     public int slowTraps;
+    public Text harmTrapText;
+    public Text slowTrapText;
 
     public GameObject harmTrap;
     public GameObject slowTrap;
@@ -54,6 +56,10 @@ public class PlayerController : MonoBehaviour
     public bool atSail;
     public bool atGuns;
     public bool atLight;
+
+    public GameObject logText;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -86,6 +92,8 @@ public class PlayerController : MonoBehaviour
 
         harmTraps = 0;
         slowTraps = 0;
+        harmTrapText = GameObject.Find("SpikeTrapText").GetComponent<Text>();
+        slowTrapText = GameObject.Find("SlowTrapText").GetComponent<Text>();
 
         exp = 0;
         level = 1;
@@ -101,6 +109,8 @@ public class PlayerController : MonoBehaviour
 
         controlsUp = false;
         controlsText.transform.parent.gameObject.SetActive(false);
+
+        logText = GameObject.Find("LogText");
     }
 
     // Update is called once per frame
@@ -179,6 +189,8 @@ public class PlayerController : MonoBehaviour
                 newHarmTrap.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 newHarmTrap.transform.position += new Vector3(0, 0, 10);
                 harmTraps -= 1;
+                if (!logText.GetComponent<EntryController>().firstTrap) logText.GetComponent<EntryController>().firstTrap = true;
+
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2) && slowTraps >= 1)
@@ -187,6 +199,7 @@ public class PlayerController : MonoBehaviour
                 newSlowTrap.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 newSlowTrap.transform.position += new Vector3(0, 0, 10);
                 slowTraps -= 1;
+                if (!logText.GetComponent<EntryController>().firstTrap) logText.GetComponent<EntryController>().firstTrap = true;
             }
 
             if (Input.GetMouseButtonDown(0) && !swordAudio.isPlaying)
@@ -229,6 +242,7 @@ cover holes that appear.
 
 Check back every once in a
 while to keep your ship afloat.";
+                    controlsText.GetComponent<Text>().fontSize = 77;
                 }
                 else if (atSail)
                 {
@@ -239,6 +253,7 @@ cover tears that appear.
 
 Check back every once in a 
 while to keep your sail intact.";
+                    controlsText.GetComponent<Text>().fontSize = 77;
                 }
                 else if (atGuns)
                 {
@@ -252,6 +267,7 @@ Check back every once in a
 while to make sure the 
 cannons are still firing to 
 keep some monsters at bay.";
+                    controlsText.GetComponent<Text>().fontSize = 77;
                 }
                 else if (atLight)
                 {
@@ -259,6 +275,7 @@ keep some monsters at bay.";
 
 Click the light to give it 
 monster cores so it stays lit.";
+                    controlsText.GetComponent<Text>().fontSize = 77;
                 }
                 else
                 {
@@ -271,9 +288,14 @@ Press space to interact
 Click the left mouse button to
 attack monsters
 
+Press 1 to place a spike trap at
+mouse arrow, and 2 for a sticky 
+trap.
+
 Press escape to open controls
 (they may be different on 
 different screens)";
+                    controlsText.GetComponent<Text>().fontSize = 55;
                 }
             }
             else
@@ -302,12 +324,18 @@ different screens)";
         tarCount.text = "x" + tars.ToString();
         teethCount.text = "x" + teeth.ToString();
 
+        slowTrapText.text = "x" + slowTraps.ToString();
+        harmTrapText.text = "x" + harmTraps.ToString();
+
         if (exp > Math.Pow(level, 2))
         {
             exp -= (int)Math.Pow(level, 2);
             level += 1;
             damage = 10 + (5 * level);
-            Debug.Log("Level: " + level.ToString());
+            if (level == 6)
+            {
+                if (!logText.GetComponent<EntryController>().level6) logText.GetComponent<EntryController>().level6 = true;
+            }
         }
 
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, 3f);

@@ -37,7 +37,8 @@ public class EnemyController : MonoBehaviour
             {
                 case "w":
                     player.GetComponent<PlayerController>().cores += 1;
-                    if (!logText.GetComponent<EntryController>().firstTrap) logText.GetComponent<EntryController>().firstTrap = true;
+                    player.GetComponent<PlayerController>().tars += 1;
+                    if (!logText.GetComponent<EntryController>().firstCore) logText.GetComponent<EntryController>().firstCore = true;
                     break;
                 case "t":
                     player.GetComponent<PlayerController>().teeth += 1;
