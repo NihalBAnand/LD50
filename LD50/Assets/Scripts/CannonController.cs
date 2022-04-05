@@ -33,6 +33,7 @@ public class CannonController : InteractableGeneric
 
             player.GetComponent<PlayerController>().atGuns = true;
 
+
             if (!logText.GetComponent<EntryController>().firstGun) logText.GetComponent<EntryController>().firstGun = true;
         }
         else
@@ -47,6 +48,8 @@ public class CannonController : InteractableGeneric
             GameObject.Find("GunpowderBG").GetComponent<Image>().enabled = false;
 
             player.GetComponent<PlayerController>().atGuns = false;
+
+            
         }
     }
 

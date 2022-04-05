@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShipController : MonoBehaviour
 {
@@ -65,7 +66,7 @@ public class ShipController : MonoBehaviour
 
         if (Time.fixedUnscaledTime > 600)
         {
-            Debug.Log("Game Won!");
+            SceneManager.LoadScene("WinScene");
         }
 
         

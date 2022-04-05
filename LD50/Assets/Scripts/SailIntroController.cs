@@ -42,6 +42,7 @@ public class SailIntroController : InteractableGeneric
             Camera.main.transform.position = GameObject.Find("Player").transform.position;
             Camera.main.transform.position += new Vector3(0, 0, -10);
             GameObject.Find("Player").GetComponent<PlayerController>().interacting = false;
+            
 
             player.GetComponent<PlayerController>().atSail = false;
         }

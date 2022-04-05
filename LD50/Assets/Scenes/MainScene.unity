@@ -1302,7 +1302,7 @@ Transform:
   - {fileID: 1844412794}
   - {fileID: 2133806905}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &308738300
 Animator:
@@ -4599,7 +4599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7814288500763600361, guid: a09e5527de2b5ee42a40350132e6bc4d, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7814288500763600361, guid: a09e5527de2b5ee42a40350132e6bc4d, type: 3}
       propertyPath: m_LocalPosition.x

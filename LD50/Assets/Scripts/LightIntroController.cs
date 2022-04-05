@@ -42,6 +42,7 @@ public class LightIntroController : InteractableGeneric
             GameObject.Find("Player").GetComponent<PlayerController>().interacting = false;
 
             player.GetComponent<PlayerController>().atLight = false;
+            
         }
     }
 }

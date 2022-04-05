@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -119,11 +120,12 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             Camera.main.transform.parent = GameObject.Find("Center").transform;
-            Destroy(gameObject);
+            SceneManager.LoadScene("LoseScene");
         }
 
         if (!interacting) 
         {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             if (!swordAudio.isPlaying)
             {
                 //Basic movement -- this works, pls no touch
@@ -318,6 +320,7 @@ different screens)";
         if (Camera.main.transform.parent == gameObject.transform)
         {
             interacting = false;
+            
         }
 
         coreCount.text = "x" + cores.ToString();
@@ -347,7 +350,7 @@ different screens)";
 
         if (interacting)
         {
-            rb.velocity = new Vector3(0, 0, 0);
+            rb.constraints = RigidbodyConstraints2D.FreezePosition;
         }
     }
 
