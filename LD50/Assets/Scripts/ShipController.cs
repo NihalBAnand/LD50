@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ShipController : MonoBehaviour
@@ -19,6 +20,8 @@ public class ShipController : MonoBehaviour
     public GameObject logText;
 
     public int difficulty;
+
+    public GameObject quitButton;
     void Start()
     {
         rightSideSpawn = GameObject.Find("RightSpawnLocation");
@@ -35,6 +38,9 @@ public class ShipController : MonoBehaviour
         logText = GameObject.Find("LogText");
 
         difficulty = 0;
+
+        quitButton.GetComponent<Button>().onClick.AddListener(quit);
+        quitButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -69,7 +75,13 @@ public class ShipController : MonoBehaviour
             SceneManager.LoadScene("WinScene");
         }
 
-        
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            if (quitButton.active)
+                quitButton.SetActive(false);
+            else
+                quitButton.SetActive(true);
+        }
     }
 
     private IEnumerator spawnEnemies()
@@ -131,5 +143,10 @@ public class ShipController : MonoBehaviour
             yield return new WaitForSeconds(20);
             enemySpawnChance += 0.01f;
         }
+    }
+
+    private void quit()
+    {
+        Application.Quit();
     }
 }

@@ -294,10 +294,12 @@ Press 1 to place a spike trap at
 mouse arrow, and 2 for a sticky 
 trap.
 
+Press F1 to quit the game.
+
 Press escape to open controls
 (they may be different on 
 different screens)";
-                    controlsText.GetComponent<Text>().fontSize = 55;
+                    controlsText.GetComponent<Text>().fontSize = 50;
                 }
             }
             else
